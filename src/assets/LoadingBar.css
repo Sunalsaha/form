@@ -1,0 +1,257 @@
+/* LoadingBar.css - Mobile-First Responsive Design with Size-Specific Loaders */
+
+/* Base styles (Mobile) */
+.loading-bar-container {
+  background-color: #00000000;
+  color: #34c759;
+  min-height: 100vh;
+  padding: 20px;
+  font-family: 'Courier New', monospace;
+  box-sizing: border-box;
+}
+
+.title {
+  font-size: clamp(18px, 5vw, 28px);
+  font-weight: bold;
+  margin-bottom: 30px;
+  letter-spacing: 1px;
+  word-break: break-word;
+}
+
+.size-options {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+}
+
+.size-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+.size-button {
+  background: transparent;
+  color: #f3f3f3;
+  border: 2px dashed #34c759;
+  padding: 10px 16px;
+  font-family: 'Courier New', monospace;
+  font-size: clamp(12px, 3vw, 14px);
+  cursor: pointer;
+  transition: all 0.3s;
+  width: 100%;
+  max-width: 300px;
+  text-align: center;
+}
+
+.size-button.active {
+  background: #34c75920;
+  border-style: solid;
+  color: #34c759;
+}
+
+.loader-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.loader-bar {
+  position: relative;
+  width: 100%;
+  display: block;
+  z-index: 2;
+}
+
+.loader-lines {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10%;
+  min-width: 40px;
+  animation: slideLoaderBack 2.5s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Size-specific loader wrapper widths */
+.size-section:nth-child(1) .loader-wrapper {
+  max-width: 166px; /* S size */
+}
+
+.size-section:nth-child(2) .loader-wrapper {
+  max-width: 240px; /* M size */
+}
+
+.size-section:nth-child(3) .loader-wrapper {
+  max-width: 332px; /* L size */
+}
+
+.size-section:nth-child(4) .loader-wrapper {
+  max-width: 412px; /* XL size */
+}
+
+/* Size-specific loader lines */
+.size-section:nth-child(1) .loader-lines {
+  max-width: 35px; /* S size - proportional to 166px bar */
+}
+
+.size-section:nth-child(2) .loader-lines {
+  max-width: 50px; /* M size - proportional to 240px bar */
+}
+
+.size-section:nth-child(3) .loader-lines {
+  max-width: 65px; /* L size - proportional to 332px bar */
+}
+
+.size-section:nth-child(4) .loader-lines {
+  max-width: 80px; /* XL size - proportional to 412px bar */
+}
+
+@keyframes slideLoaderBack {
+  0% {
+    transform: translate(-100%, -50%);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(1200%, -50%);
+    opacity: 0;
+  }
+}
+
+/* Tablet - Small (480px and up) */
+@media (min-width: 480px) {
+  .loading-bar-container {
+    padding: 25px;
+  }
+
+  .title {
+    margin-bottom: 40px;
+  }
+
+  .size-button {
+    max-width: 200px;
+  }
+
+  .loader-lines {
+    width: 12%;
+  }
+}
+
+/* Tablet - Medium (768px and up) */
+@media (min-width: 768px) {
+  .loading-bar-container {
+    padding: 35px;
+  }
+
+  .title {
+    margin-bottom: 50px;
+  }
+
+  .size-options {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 35px;
+  }
+
+  .size-section {
+    width: calc(50% - 18px);
+    min-width: 200px;
+  }
+
+  .loader-lines {
+    width: 14%;
+  }
+}
+
+/* Desktop - Small (1024px and up) */
+@media (min-width: 1024px) {
+  .loading-bar-container {
+    padding: 40px;
+  }
+
+  .title {
+    margin-bottom: 60px;
+  }
+
+  .size-options {
+    gap: 40px;
+    flex-direction: column;
+  }
+
+  .size-section {
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .size-button {
+    width: 150px;
+    max-width: 150px;
+    flex-shrink: 0;
+  }
+
+  .loader-wrapper {
+    flex: 0 0 auto;
+  }
+
+  .loader-lines {
+    width: 15%;
+  }
+}
+
+/* Desktop - Large (1440px and up) */
+@media (min-width: 1440px) {
+  .loading-bar-container {
+    padding: 50px;
+  }
+
+  .size-button {
+    width: 180px;
+    max-width: 180px;
+  }
+
+  .loader-lines {
+    width: 16%;
+  }
+}
+
+/* Touch-friendly interactions */
+@media (hover: none) and (pointer: coarse) {
+  .size-button {
+    padding: 14px 20px;
+    min-height: 48px;
+  }
+}
+
+/* Landscape mobile optimization */
+@media (max-width: 768px) and (orientation: landscape) {
+  .loading-bar-container {
+    padding: 15px;
+  }
+
+  .title {
+    margin-bottom: 20px;
+  }
+
+  .size-options {
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .size-section {
+    width: calc(50% - 10px);
+  }
+}

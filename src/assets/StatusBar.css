@@ -1,0 +1,256 @@
+/* StatusBar.css - Mobile-First Responsive Design */
+
+/* Base styles (Mobile) */
+.status-bar-container {
+ 
+  color: #f3f3f3;
+  min-height: 100vh;
+  padding: 0px;
+  font-family: 'Courier New', monospace;
+  box-sizing: border-box;
+}
+
+.status-title {
+  font-size: clamp(18px, 5vw, 28px);
+  font-weight: bold;
+  margin-bottom: 30px;
+  letter-spacing: 1px;
+  color: #34c759;
+}
+
+.status-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+}
+
+.status-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  animation: fadeIn 0.3s ease-in;
+  margin-bottom: 25px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.size-label {
+  font-size: clamp(12px, 3vw, 14px);
+  color: #f3f3f3;
+  font-weight: bold;
+}
+
+.status-card {
+  border: 2px dashed #34c759;
+  padding: 15px;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.file-info {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: clamp(11px, 2.5vw, 13px);
+  color: #f3f3f3;
+  position: relative;
+}
+
+.file-name {
+  font-weight: bold;
+  color: #f3f3f3;
+}
+
+.file-size {
+  color: #999;
+}
+
+.progress-percent {
+  font-weight: bold;
+  color: #f3f3f3;
+  margin-left: 112px;
+  transition: all 0.5s ease;
+}
+
+.time-left {
+  color: #999;
+  transition: all 0.5s ease;
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+  color: #f3f3f3;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0;
+  margin-left: auto;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  opacity: 0.7;
+}
+
+.close-btn:hover {
+  color: #34c759;
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+.close-btn:active {
+  transform: scale(0.9);
+}
+
+.progress-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.progress-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.progress-lines {
+  position: absolute;
+  left: 9%;
+  margin-right: 100%;
+  top: 0;
+  width: 40%;
+  height: 100%;
+  background: #4B4B4B;
+  animation: moveProgressSlow 3s linear infinite;
+}
+
+.progress-lines.completed {
+  background: #F3F3F3;
+  animation: none;
+  width: 0%;
+  left: 0;
+}
+
+@keyframes moveProgressSlow {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.progress-bar {
+  position: relative;
+  width: 100%;
+  display: block;
+  z-index: 2;
+  min-width: 200px;
+}
+
+.progress-bar.completed {
+  stroke: #ffffff !important;
+}
+
+/* Tablet - Small (480px and up) */
+@media (min-width: 480px) {
+  .status-bar-container {
+    padding: 25px;
+  }
+  .status-title {
+    margin-bottom: 40px;
+  }
+  .status-card {
+    padding: 18px;
+  }
+}
+
+/* Tablet - Medium (768px and up) */
+@media (min-width: 768px) {
+  .status-bar-container {
+    padding: 35px;
+  }
+  .status-title {
+    margin-bottom: 50px;
+  }
+  .status-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    column-gap: 20px;
+  }
+  .status-card {
+    padding: 20px;
+  }
+}
+
+/* Desktop - Small (1024px and up) */
+@media (min-width: 1024px) {
+  .status-bar-container {
+    padding: 40px;
+  }
+  .status-title {
+    margin-bottom: 60px;
+  }
+  .status-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    column-gap: 25px;
+  }
+}
+
+/* Desktop - Large (1440px and up) */
+@media (min-width: 1440px) {
+  .status-bar-container {
+    padding: 50px;
+  }
+  .status-grid {
+    column-gap: 30px;
+  }
+}
+
+/* Touch-friendly interactions */
+@media (hover: none) and (pointer: coarse) {
+  .close-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+  }
+}
+
+/* Landscape mobile optimization */
+@media (max-width: 768px) and (orientation: landscape) {
+  .status-bar-container {
+    padding: 15px;
+  }
+  .status-title {
+    margin-bottom: 20px;
+  }
+  .status-grid {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 15px;
+  }
+}

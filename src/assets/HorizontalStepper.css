@@ -1,0 +1,242 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+.horizontal-form-container {
+  max-width: 1400px;
+  margin: 40px auto;
+  padding: 20px;
+  font-family: 'Pixelify Sans', sans-serif;
+  min-height: 100vh;
+}
+
+.horizontal-form-title {
+  font-size: clamp(20px, 4vw, 24px);
+  font-weight: 600;
+  color: #34C759;
+  margin-bottom: 40px;
+  text-align: left;
+}
+
+.size-section {
+  margin-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.size-label {
+  font-size: clamp(16px, 3vw, 20px);
+  font-weight: 600;
+  color: #666;
+  min-width: 50px;
+  margin-top: 8px;
+  flex-shrink: 0;
+}
+
+.horizontal-stepper-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  width: 100%;
+}
+
+/* Horizontal Step */
+.horizontal-step {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1 1 250px;
+  min-width: 250px;
+  position: relative;
+}
+
+.step-header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Number Box */
+.number-box-h {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+}
+
+.svg-box-h {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+
+.number-h {
+  position: relative;
+  z-index: 2;
+  font-family: 'Pixelify Sans', sans-serif;
+  font-weight: 700;
+  color: #fff;
+  transition: color 0.2s;
+  font-size: clamp(12px, 2vw, 16px);
+}
+
+.number-h.green-text {
+  color: #34C759;
+}
+
+/* Step Content - Question and Input Inline */
+.step-content-inline {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  gap: 0;
+  flex: 1;
+  flex-wrap: wrap;
+}
+
+.question-wrapper-h {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  flex: 2;
+  min-width: 120px;
+  margin: 0;
+  padding: 0;
+}
+
+.label-text-h {
+  font-family: 'Pixelify Sans', sans-serif;
+  font-weight: 500;
+  display: inline-block;
+  color: #F3F3F3;
+  transition: color 0.2s;
+  font-size: clamp(14px, 2.5vw, 18px);
+  white-space: nowrap;
+  margin: 0;
+  padding: 0;
+}
+
+.label-text-h.green-text {
+  color: #34C759 !important;
+}
+
+.question-underline-h {
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 20%;
+  height: 2px;
+  background: transparent;
+  transition: background 0.3s;
+  margin: 0;
+  padding: 0;
+}
+
+.question-underline-h.active {
+  background: #34C759;
+}
+
+/* Input Wrapper */
+.input-wrapper-h {
+  position: relative;
+  flex: 1;
+  min-width: px;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+.answer-input-h {
+  width: 200%;
+  background: transparent;
+  border: none;
+  left: -200px;
+  outline: none;
+  color: #333;
+  font-weight: 500;
+  position: relative;
+  z-index: 2;
+  padding: 8px 8px 4px 8px;
+  cursor: text;
+  margin: 0;
+  transition: color 0.3s;
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: clamp(12px, 2vw, 16px);
+}
+
+.answer-input-h.green-text {
+  color: #34C759;
+}
+
+.answer-input-h::placeholder {
+  color: #000000;
+  
+}
+
+.underline-h {
+  position: absolute;
+  top: 4px;
+  left: -195px;
+  height: 2px;
+  background: #e0e0e0;
+  transition: background 0.3s;
+  z-index: 1;
+  width: 200%;
+  margin: 0;
+  padding: 0;
+}
+
+.underline-h.active {
+  background: #34C759;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .horizontal-stepper-wrapper {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .step-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .step-content-inline {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  .question-wrapper-h,
+  .input-wrapper-h {
+    width: 100%;
+    margin: 0;
+  }
+
+  .label-text-h {
+    white-space: normal;
+  }
+
+  .number-box-h {
+    width: 36px;
+    height: 36px;
+  }
+}

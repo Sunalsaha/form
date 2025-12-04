@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixeloid+Sans:wght@400;700&display=swap');
+
+body {
+  font-family: 'Pixeloid Sans', sans-serif;
+  background: #000;
+  color: #00ff00;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+.slider-demo__title {
+  font-family: 'Pixeloid Sans', sans-serif;
+  font-size: 22px;
+  color: #38fa82;
+  margin-bottom: 38px;
+  text-align: center;
+}
+
+.slider-demo__row {
+  display: flex;
+  gap: 36px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+
+
+.expandable-slider__icon svg {
+  display: block;
+  image-rendering: pixelated;
+}
+
+.expandable-slider__content {
+  animation: fadeIn 0.2s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
