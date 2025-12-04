@@ -9,7 +9,7 @@ interface NumberFormProps {
 }
 
 const TickIcon = ({ size }: { size: number }) => {
-  const scale = size / 28;
+  // Removed unused 'scale' variable
   
   return (
     <svg 

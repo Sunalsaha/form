@@ -176,7 +176,7 @@ const SliderItem: React.FC<{
             width: `${size.containerWidth}px`,
             height: `${containerHeight}px`,
             position: 'relative',
-            border: '2px dashed #9747FF',
+            border: '2px dashed #5cff47ff',
             borderRadius: '8px',
             padding: '20px 16px',
             backgroundColor: 'rgba(153, 50, 204, 0.05)',
