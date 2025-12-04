@@ -6,7 +6,7 @@ interface HorizontalStepProps {
   question: string;
   stepNumber: number;
   onComplete?: () => void;
-  isLast?: boolean;
+  // REMOVED: isLast?: boolean; (Unused prop caused build error)
 }
 
 const TickIcon = ({ size }: { size: number }) => {
@@ -27,7 +27,8 @@ const TickIcon = ({ size }: { size: number }) => {
   );
 };
 
-const HorizontalStep: React.FC<HorizontalStepProps> = ({ size, question, stepNumber, onComplete, isLast = false }) => {
+// REMOVED: isLast from destructured props
+const HorizontalStep: React.FC<HorizontalStepProps> = ({ size, question, stepNumber, onComplete }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isInputHovered, setIsInputHovered] = useState(false);
   const [answer, setAnswer] = useState('');
@@ -168,7 +169,7 @@ const HorizontalQuestionForm: React.FC = () => {
               size="S"
               question={q}
               stepNumber={index + 1}
-              isLast={index === allQuestions.length - 1}
+              // REMOVED: isLast prop passing since it was removed from interface
             />
           ))}
         </div>
@@ -184,7 +185,7 @@ const HorizontalQuestionForm: React.FC = () => {
               size="M"
               question={q}
               stepNumber={index + 1}
-              isLast={index === allQuestions.length - 1}
+              // REMOVED: isLast prop passing
             />
           ))}
         </div>
@@ -200,7 +201,7 @@ const HorizontalQuestionForm: React.FC = () => {
               size="L"
               question={q}
               stepNumber={index + 1}
-              isLast={index === allQuestions.length - 1}
+              // REMOVED: isLast prop passing
             />
           ))}
         </div>
@@ -216,7 +217,7 @@ const HorizontalQuestionForm: React.FC = () => {
               size="XL"
               question={q}
               stepNumber={index + 1}
-              isLast={index === allQuestions.length - 1}
+              // REMOVED: isLast prop passing
             />
           ))}
         </div>

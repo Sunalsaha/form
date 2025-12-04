@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import type { JSX } from "react";
+// REMOVED: import type { JSX } from "react"; (Unused)
 import "./ExpandableSlider.css";
 
 type SliderSizeKey = "S" | "M" | "L" | "XL";
@@ -14,22 +14,20 @@ interface SizeConfig {
   height: number;
   iconSize: number;
   expandedWidth: number;
-  trackWidth: number; // This now represents the full internal width of the SVG content
+  trackWidth: number;
   trackHeight: number;
   thumbSize: number;
-  buttonFontSize: number;
-  valueFontSize: number;
+  // REMOVED: buttonFontSize, valueFontSize (Unused)
 }
 
 const sizeConfig: Record<SliderSizeKey, SizeConfig> = {
-  // Using 226 width from the provided SVG viewBox
-  S: { height: 28, iconSize: 28, expandedWidth: 260, trackWidth: 226, trackHeight: 28, thumbSize: 16, buttonFontSize: 20, valueFontSize: 14 },
-  M: { height: 36, iconSize: 36, expandedWidth: 300, trackWidth: 250, trackHeight: 36, thumbSize: 20, buttonFontSize: 24, valueFontSize: 16 },
-  L: { height: 44, iconSize: 44, expandedWidth: 340, trackWidth: 280, trackHeight: 44, thumbSize: 24, buttonFontSize: 28, valueFontSize: 18 },
-  XL: { height: 54, iconSize: 54, expandedWidth: 400, trackWidth: 320, trackHeight: 54, thumbSize: 28, buttonFontSize: 32, valueFontSize: 20 },
+  S: { height: 28, iconSize: 28, expandedWidth: 260, trackWidth: 226, trackHeight: 28, thumbSize: 16 },
+  M: { height: 36, iconSize: 36, expandedWidth: 300, trackWidth: 250, trackHeight: 36, thumbSize: 20 },
+  L: { height: 44, iconSize: 44, expandedWidth: 340, trackWidth: 280, trackHeight: 44, thumbSize: 24 },
+  XL: { height: 54, iconSize: 54, expandedWidth: 400, trackWidth: 320, trackHeight: 54, thumbSize: 28 },
 };
 
-// --- SVG PATHS (User Provided) ---
+// --- SVG PATHS ---
 
 const PIXEL_ICON_DEFAULT = (
   <>
@@ -141,8 +139,6 @@ const PIXEL_ICON_HOVER = (
   </>
 );
 
-// --- TRACK SVG (User Provided) ---
-
 const TRACK_SVG_PATH = (
   <>
     <path stroke="#f3f3f3" d="M4 0h218M4 1h218M2 2h2M222 2h2M2 3h2M222 3h2M0 4h2M224 4h2M0 5h2M224 5h2M0 6h2M224 6h2M0 7h2M224 7h2M0 8h2M224 8h2M0 9h2M209 9h2M224 9h2M0 10h2M32 10h162M209 10h2M224 10h2M0 11h2M32 11h162M209 11h2M224 11h2M0 12h2M30 12h2M194 12h2M209 12h2M224 12h2M0 13h2M11 13h10M30 13h2M194 13h2M205 13h10M224 13h2M0 14h2M11 14h10M30 14h2M194 14h2M205 14h10M224 14h2M0 15h2M30 15h2M194 15h2M209 15h2M224 15h2M0 16h2M32 16h162M209 16h2M224 16h2M0 17h2M32 17h162M209 17h2M224 17h2M0 18h2M209 18h2M224 18h2M0 19h2M224 19h2M0 20h2M224 20h2M0 21h2M224 21h2M0 22h2M224 22h2M0 23h2M224 23h2M2 24h2M222 24h2M2 25h2M222 25h2M4 26h218M4 27h218" />
@@ -175,7 +171,7 @@ const SliderIcon: React.FC<{ isHovered: boolean; size: number }> = React.memo(({
 ));
 SliderIcon.displayName = "SliderIcon";
 
-const SliderTrack: React.FC<{ size: SliderSizeKey }> = React.memo(({ size }) => (
+const SliderTrack: React.FC<{ size: SliderSizeKey }> = React.memo(() => (
   <svg
     width="100%"
     height="100%"
@@ -212,13 +208,11 @@ const ExpandableSlider: React.FC<ExpandableSliderProps> = ({ size }) => {
   const [isDragging, setIsDragging] = useState(false);
   const trackRef = React.useRef<HTMLDivElement>(null);
 
-  const handleIncrement = useCallback(() => setSliderValue((prev) => Math.min(100, prev + 5)), []);
-  const handleDecrement = useCallback(() => setSliderValue((prev) => Math.max(0, prev - 5)), []);
+  // REMOVED: handleIncrement and handleDecrement (Unused)
 
   const handleDrag = useCallback((clientX: number) => {
     if (!trackRef.current) return;
     const rect = trackRef.current.getBoundingClientRect();
-    // Adjust drag area calculation to respect internal padding/margins of the track if needed
     const percentage = ((clientX - rect.left) / rect.width) * 100;
     setSliderValue(Math.max(0, Math.min(100, percentage)));
   }, []);
@@ -247,7 +241,6 @@ const ExpandableSlider: React.FC<ExpandableSliderProps> = ({ size }) => {
   const containerStyle: React.CSSProperties = {
     height: `${config.height}px`,
     width: isExpanded ? `${config.expandedWidth}px` : `${config.height}px`,
-    
     background: 'transparent', 
     boxShadow: 'none',
     display: "flex",
@@ -314,13 +307,9 @@ const ExpandableSlider: React.FC<ExpandableSliderProps> = ({ size }) => {
     left: `calc(${32/226*100}% + (${sliderValue/100} * ${162/226*100}%))`,
     width: `${config.thumbSize}px`,
     height: `${config.thumbSize}px`,
-    // Removed previous border/background as we are now using SVG
     transform: "translate(-50%, -50%)",
     pointerEvents: "none",
-    // Removed boxShadow as SVG contains shading
   };
-
-  
   
   return (
     <div
@@ -334,7 +323,6 @@ const ExpandableSlider: React.FC<ExpandableSliderProps> = ({ size }) => {
 
       {isExpanded && (
         <div style={contentStyle}>
-          
           <div ref={trackRef} style={trackContainerStyle} onMouseDown={handleMouseDown}>
             {/* Background SVG */}
             <div style={trackBackgroundStyle}>
@@ -349,8 +337,6 @@ const ExpandableSlider: React.FC<ExpandableSliderProps> = ({ size }) => {
                 <SliderThumb size={config.thumbSize} />
             </div>
           </div>
-
-         
         </div>
       )}
     </div>
@@ -361,9 +347,12 @@ const ExpandableSlider: React.FC<ExpandableSliderProps> = ({ size }) => {
 
 export const SliderDemo: React.FC = () => (
   <div className="slider-demo">
-    <h1 className="slider-demo__title">
-      SLIDE 1.2 EX - Pixel Art Track & Icon
-    </h1>
+    
+<h1 className="slider-demo__title" style={{ fontFamily: "'Pixelify Sans', sans-serif" }}>
+  SLIDE 1.2 EX - Expanded Slider in CTA
+</h1>
+
+
     <div className="slider-demo__row">
       <div className="slider-demo__item">
         <span className="slider-demo__label">(S) h28px</span>

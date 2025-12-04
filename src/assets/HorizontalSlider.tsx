@@ -215,9 +215,9 @@ const SliderItem: React.FC<{
   isDragging: boolean;
   onDragStart: (index: number, e: React.MouseEvent | React.TouchEvent) => void;
   onValueChange: (index: number, value: number) => void;
-  onHoverChange: (index: number | null) => void;
+  // REMOVED: onHoverChange prop as it was unused
 }> = React.memo(
-  ({ size, value, index, isDragging, onDragStart, onHoverChange }) => {
+  ({ size, value, index, isDragging, onDragStart }) => {
     const thumbSize = size.thumbSize;
     const containerHeight = size.height + 40;
     
@@ -302,8 +302,7 @@ const SliderItem: React.FC<{
               cursor: 'pointer',
               transition: isDragging ? 'none' : 'left 0.05s ease',
             }}
-            onMouseEnter={() => onHoverChange(index)}
-            onMouseLeave={() => onHoverChange(null)}
+            // REMOVED: onMouseEnter/Leave calls that used setHoveredThumb
             onMouseDown={(e) => onDragStart(index, e)}
             onTouchStart={(e) => onDragStart(index, e)}
           >
@@ -337,7 +336,7 @@ SliderItem.displayName = 'SliderItem';
 const HorizontalSliderTypes: React.FC = () => {
   const [sliderValues, setSliderValues] = useState<number[]>([0, 33, 66, 100]);
   const [isDragging, setIsDragging] = useState<number | null>(null);
-  const [hoveredThumb, setHoveredThumb] = useState<number | null>(null);
+  // REMOVED: hoveredThumb state as it was unused
 
   const handleDragStart = useCallback((index: number, e: React.MouseEvent | React.TouchEvent) => {
     e.preventDefault();
@@ -505,7 +504,7 @@ const HorizontalSliderTypes: React.FC = () => {
                   return newValues;
                 })
               }
-              onHoverChange={setHoveredThumb}
+              // REMOVED: onHoverChange prop
             />
           ))}
         </div>
