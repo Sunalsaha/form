@@ -6,7 +6,6 @@ interface HorizontalStepProps {
   question: string;
   stepNumber: number;
   onComplete?: () => void;
-  // REMOVED: isLast?: boolean; (Unused prop caused build error)
 }
 
 const TickIcon = ({ size }: { size: number }) => {
@@ -27,7 +26,6 @@ const TickIcon = ({ size }: { size: number }) => {
   );
 };
 
-// REMOVED: isLast from destructured props
 const HorizontalStep: React.FC<HorizontalStepProps> = ({ size, question, stepNumber, onComplete }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isInputHovered, setIsInputHovered] = useState(false);
@@ -69,7 +67,6 @@ const HorizontalStep: React.FC<HorizontalStepProps> = ({ size, question, stepNum
 
   return (
     <div className={`horizontal-step ${size}`}>
-      {/* Step Header: Number Box and Content Side-by-Side */}
       <div className="step-header">
         {!isCompleted ? (
           <div
@@ -105,7 +102,6 @@ const HorizontalStep: React.FC<HorizontalStepProps> = ({ size, question, stepNum
           </div>
         )}
 
-        {/* Step Content: Question and Answer Box Beside Number Box */}
         <div
           className={`step-content-inline ${size}`}
           onMouseEnter={() => setIsHovered(true)}
@@ -147,7 +143,6 @@ const HorizontalStep: React.FC<HorizontalStepProps> = ({ size, question, stepNum
   );
 };
 
-// Main Horizontal Form Component with 4 rows of 3 questions each
 const HorizontalQuestionForm: React.FC = () => {
   const allQuestions = [
     "Label 1",
@@ -158,67 +153,35 @@ const HorizontalQuestionForm: React.FC = () => {
   return (
     <div className="horizontal-form-container">
       <h2 className="horizontal-form-title">Horizontal stepper arrangements</h2>
-
-      {/* S Size Row */}
       <div className="size-section">
         <h3 className="size-label">S</h3>
         <div className="horizontal-stepper-wrapper">
           {allQuestions.map((q, index) => (
-            <HorizontalStep
-              key={`s-${index}`}
-              size="S"
-              question={q}
-              stepNumber={index + 1}
-              // REMOVED: isLast prop passing since it was removed from interface
-            />
+            <HorizontalStep key={`s-${index}`} size="S" question={q} stepNumber={index + 1} />
           ))}
         </div>
       </div>
-
-      {/* M Size Row */}
       <div className="size-section">
         <h3 className="size-label">M</h3>
         <div className="horizontal-stepper-wrapper">
           {allQuestions.map((q, index) => (
-            <HorizontalStep
-              key={`m-${index}`}
-              size="M"
-              question={q}
-              stepNumber={index + 1}
-              // REMOVED: isLast prop passing
-            />
+            <HorizontalStep key={`m-${index}`} size="M" question={q} stepNumber={index + 1} />
           ))}
         </div>
       </div>
-
-      {/* L Size Row */}
       <div className="size-section">
         <h3 className="size-label">L</h3>
         <div className="horizontal-stepper-wrapper">
           {allQuestions.map((q, index) => (
-            <HorizontalStep
-              key={`l-${index}`}
-              size="L"
-              question={q}
-              stepNumber={index + 1}
-              // REMOVED: isLast prop passing
-            />
+            <HorizontalStep key={`l-${index}`} size="L" question={q} stepNumber={index + 1} />
           ))}
         </div>
       </div>
-
-      {/* XL Size Row */}
       <div className="size-section">
         <h3 className="size-label">XL</h3>
         <div className="horizontal-stepper-wrapper">
           {allQuestions.map((q, index) => (
-            <HorizontalStep
-              key={`xl-${index}`}
-              size="XL"
-              question={q}
-              stepNumber={index + 1}
-              // REMOVED: isLast prop passing
-            />
+            <HorizontalStep key={`xl-${index}`} size="XL" question={q} stepNumber={index + 1} />
           ))}
         </div>
       </div>
